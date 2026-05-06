@@ -20,22 +20,36 @@ def playing_area():
 class Head(Turtle):
   def __init__(self, screen, body):
     super().__init__()
-    pass
+    self.alive = True
 
   def up(self):
-    pass
-
+    global player
+    player.setheading(90)
+    if player.ycor()!=240:
+        player.sety(player.ycor()+10)
   def down(self):
-    pass
+    global player
+    player.setheading(-90)
+    if player.ycor()!=-240:
+      player.sety(player.ycor()-10)
 
   def left(self):
-    pass
+    global player
+    player.setheading(180)
+    if player.xcor()!=-240:
+        player.setx(player.xcor()-10)
 
   def right(self):
-    pass
+    global player
+    player.setheading(0)
+    if player.xcor()!=240:
+        player.setx(player.xcor()+10)
 
   def move(self):
-    pass
+    self.forward(20)
+    if t.xcor() > 240 or t.xcor() < -240 or t.ycor()> 240 or t.ycor()<-240:
+        self.die()
+
     
   def die(self):
     pass
@@ -73,4 +87,5 @@ screen.exitonclick()
 
 
 
+screen.exitonclick()
 screen.exitonclick()
