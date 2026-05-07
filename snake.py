@@ -21,6 +21,7 @@ class Head(Turtle):
   def __init__(self, screen):
     super().__init__()
     self.alive = True
+<<<<<<< HEAD
     self.shape("square")
     self.color("green")
     self.pu
@@ -46,13 +47,43 @@ class Head(Turtle):
   def right(self):
     if player.setheading() !=180:
       self.setheading(0)
+=======
+
+  def up(self):
+    global player
+    player.setheading(90)
+    if player.ycor()!=240:
+        player.sety(player.ycor()+10)
+  def down(self):
+    global player
+    player.setheading(-90)
+    if player.ycor()!=-240:
+      player.sety(player.ycor()-10)
+
+  def left(self):
+    global player
+    player.setheading(180)
+    if player.xcor()!=-240:
+        player.setx(player.xcor()-10)
+
+  def right(self):
+    global player
+    player.setheading(0)
+    if player.xcor()!=240:
+        player.setx(player.xcor()+10)
+>>>>>>> 5972e230a147836410142759a86d7c2ee6acb4bc
 
   def move(self):
     self.forward(20)
     if t.xcor() > 240 or t.xcor() < -240 or t.ycor()> 240 or t.ycor()<-240:
         self.die()
+<<<<<<< HEAD
         self.ht
 
+=======
+
+    
+>>>>>>> 5972e230a147836410142759a86d7c2ee6acb4bc
   def die(self):
     pass
 
@@ -116,4 +147,5 @@ body = [head]
 
 
 
+screen.exitonclick()
 screen.exitonclick()
