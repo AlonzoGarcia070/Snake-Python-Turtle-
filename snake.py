@@ -16,38 +16,39 @@ def playing_area():
     pen.goto(-240,-240)
     pen.goto(-240,240)
     pen.end_fill()
-    
+
+# class Head(Turtle):
+#   def __init__(self, screen, body):
+#     super().__init__()
+#     self.alive = True
+
 class Head(Turtle):
-  def __init__(self, screen):
+  def __init__(self,screen):
     super().__init__()
+    self.ht()
+    self.speed(0)
+    self.color("brown")
+    self.penup()
+    self.setheading(90)
+    self.shape("turtle")
     self.alive = True
-<<<<<<< HEAD
-    self.shape("square")
-    self.color("green")
-    self.pu
-    self.goto(0,0)
-    self.direction = "Right"
-    screen.onkeypress(up, "Up")
-    screen.onkeypress(down, "Down")
-    screen.onkeypress(right, "Right")
-    screen.onkeypress(left, "Left")
-    
-  def up(self):
-    if self.heading() != -90:
-      self.setheading(90)
+    self.st()
+    screen.onkeypress(self.turn_left, "Left")
+    screen.onkeypress(self.turn_right, "Right")
+    screen.onkeypress(self.up, "Up")
+    screen.onkeypress(self.down, "Down")
+
+  def turn_left(self):
+    self.left(10)
+
+  def turn_right(self):
+    self.right(10)
 
   def down(self):
-    if self.heading() != 90:
-      self.setheading(-90)
-    
-  def left(self):
-    if player.setheading() !=0:
-      self.setheading(180)
+    self.down(10)
 
-  def right(self):
-    if player.setheading() !=180:
-      self.setheading(0)
-=======
+  def up(self):
+    self.up(10)
 
   def up(self):
     global player
@@ -71,46 +72,43 @@ class Head(Turtle):
     player.setheading(0)
     if player.xcor()!=240:
         player.setx(player.xcor()+10)
->>>>>>> 5972e230a147836410142759a86d7c2ee6acb4bc
 
   def move(self):
     self.forward(20)
     if t.xcor() > 240 or t.xcor() < -240 or t.ycor()> 240 or t.ycor()<-240:
         self.die()
-<<<<<<< HEAD
-        self.ht
 
-=======
-
-    
->>>>>>> 5972e230a147836410142759a86d7c2ee6acb4bc
   def die(self):
     pass
-
 
 class Segment(Turtle):
   def __init__(self, other):
     super().__init__()
+    pass
 
-
-  def move(self):
-    self.forward(4)
-    if self.xcor() > 230 or self.xcor() < -230:
-      self.setheading(180 - self.heading())
-    if self.ycor() > 230 or self.ycor() < -230:
-      self.setheading(-self.heading())
-
+  def move(self, other):
+    pass
 
 class Apple(Turtle):
   def __init__(self):
     super().__init__()
-    self.shape("circle")
+    self.ht()
+    self.speed(0)
     self.color("red")
-    self.pu
-    self.goto(random.randint(-230,230), random.randint(-230,230))
+    self.shape("circle")
+    self.penup()
+    x = random.randint(-200,200)
+    y = random.randint(-200,200)
+    self.goto(x,y)
+    self.setheading(90)
+    self.st()
 
   def relocate(self):
-    self.goto(random.randint(-230,230), random.randint(-230,230))
+    x = random.randint(-200, 200)
+    y = random.randint(-200, 200)
+    self.goto(x,y)
+
+
 
 def update():
   if head.alive:
@@ -123,10 +121,6 @@ def update():
 
 # while head.alive:
 
-
-
-
-
 screen = Screen()
 screen.bgcolor("black")
 screen.setup(520,520)
@@ -134,18 +128,8 @@ screen.listen()
 screen.onkey(update, "space")
 
 
-
-
-
 head = Head(screen)
 body = [head]
+apple = Apple()
 
-
-
-
-
-
-
-
-screen.exitonclick()
 screen.exitonclick()
