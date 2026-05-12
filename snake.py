@@ -38,48 +38,37 @@ class Head(Turtle):
     screen.onkeypress(self.up, "Up")
     screen.onkeypress(self.down, "Down")
 
+  def up(self):
+    global player
+    self.setheading(90)
+    if self.ycor()!=240:
+        self.sety(self.ycor()+10)
+  def down(self):
+    global player
+    self.setheading(-90)
+    if self.ycor()!=-240:
+      self.sety(self.ycor()-10)
+
   def turn_left(self):
-    self.left(10)
+    global player
+    self.setheading(180)
+    if self.xcor()!=-240:
+        self.setx(self.xcor()-10)
 
   def turn_right(self):
-    self.right(10)
-
-  def down(self):
-    self.down(10)
-
-  def up(self):
-    self.up(10)
-
-  def up(self):
     global player
-    player.setheading(90)
-    if player.ycor()!=240:
-        player.sety(player.ycor()+10)
-  def down(self):
-    global player
-    player.setheading(-90)
-    if player.ycor()!=-240:
-      player.sety(player.ycor()-10)
-
-  def left(self):
-    global player
-    player.setheading(180)
-    if player.xcor()!=-240:
-        player.setx(player.xcor()-10)
-
-  def right(self):
-    global player
-    player.setheading(0)
-    if player.xcor()!=240:
-        player.setx(player.xcor()+10)
+    self.setheading(0)
+    if self.xcor()!=240:
+        self.setx(self.xcor()+10)
 
   def move(self):
-    self.forward(20)
-    if t.xcor() > 240 or t.xcor() < -240 or t.ycor()> 240 or t.ycor()<-240:
+    self.forward(10)
+    if self.xcor() > 240 or self.xcor() < -240 or self.ycor()> 240 or self.ycor()<-240:
         self.die()
 
   def die(self):
-    pass
+    self.alive =False
+    self.ht()
 
 class Segment(Turtle):
   def __init__(self, other):
@@ -131,5 +120,8 @@ screen.onkey(update, "space")
 head = Head(screen)
 body = [head]
 apple = Apple()
+
+update()
+
 
 screen.exitonclick()
