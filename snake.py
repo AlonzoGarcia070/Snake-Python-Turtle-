@@ -27,10 +27,10 @@ class Head(Turtle):
     super().__init__()
     self.ht()
     self.speed(0)
-    self.color("brown")
+    self.color("orange")
     self.penup()
     self.setheading(90)
-    self.shape("turtle")
+    self.shape("square")
     self.alive = True
     self.st()
     screen.onkeypress(self.turn_left, "Left")
@@ -73,10 +73,20 @@ class Head(Turtle):
 class Segment(Turtle):
   def __init__(self, other):
     super().__init__()
-    pass
+    self.ht()
+    self.speed(0)
+    self.color("green")
+    self.shape("square")
+    self.penup()
+    self.goto(other.xcor(), other.ycor())
+    self.other=other
+    self.st()
 
-  def move(self, other):
-    pass
+
+
+  def move(self):
+    self.goto(self.other.xcor(), self.other.ycor())
+
 
 class Apple(Turtle):
   def __init__(self):
@@ -105,7 +115,11 @@ def update():
 
     if head.distance(apple) <20:
       apple.relocate()
-
+      body.append(Segment(body))
+    for i in range(len(body)-1,0,-1):
+      body[i].move()
+    if head.distance(other)<20:
+      head.alive=False
   screen.ontimer(update, 120)
 
 # while head.alive:
