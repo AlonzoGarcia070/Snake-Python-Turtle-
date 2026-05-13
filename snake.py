@@ -78,8 +78,8 @@ class Segment(Turtle):
     self.color("green")
     self.shape("square")
     self.penup()
-    self.goto(other.xcor(), other.ycor())
     self.other=other
+    self.goto(other.xcor(), other.ycor())
     self.st()
 
 
@@ -118,8 +118,10 @@ def update():
       body.append(Segment(body))
     for i in range(len(body)-1,0,-1):
       body[i].move()
-    if head.distance(other)<20:
-      head.alive=False
+    # if head.distance(Segment.other)<20:
+    #   head.alive=False
+    #   self.die()
+    #   self.ht()
   screen.ontimer(update, 120)
 
 # while head.alive:
